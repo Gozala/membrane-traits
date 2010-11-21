@@ -5,6 +5,7 @@ var Trait = require('light-traits').Trait
 exports['test create membranes as traits'] = function (assert) {
   var TFixture = MembraneTrait(
   { _foo: 'secret'
+  , bla: Trait.required
   , get foo() {
       return this._foo
     }
@@ -16,7 +17,7 @@ exports['test create membranes as traits'] = function (assert) {
       return this._foo + a + b
     }
   })
-  var fixture = TFixture.create({ _baz: 1, bla: 2 })
+  var fixture = TFixture.create({ _baz: 1, bla: 2, brr: 3 })
 
   assert.ok
   ( !('_foo' in fixture)
@@ -25,6 +26,10 @@ exports['test create membranes as traits'] = function (assert) {
   assert.ok
   ( !('_baz' in fixture)
   , 'inherited properties that start with `_` are omitted'
+  )
+  assert.ok
+  ( 'bla' in fixture
+  , 'inherited required properties are defined'
   )
   assert.equal(fixture.bar, 'public', 'public trait properties are accessible')
   assert.equal(fixture.bla, 2, 'inherited public properties are accessible')
@@ -52,6 +57,7 @@ exports['test add `MembraneTrait` to trait composition'] = function(assert) {
   ( MembraneTrait
   , Trait(
     { _foo: 'secret'
+    , bla: Trait.required
     , get foo() {
         return this._foo
       }
@@ -64,7 +70,7 @@ exports['test add `MembraneTrait` to trait composition'] = function(assert) {
       }
     })
   )
-  var fixture = TFixture.create({ _baz: 1, bla: 2 })
+  var fixture = TFixture.create({ _baz: 1, bla: 2, brr: 3 })
   ,   membrane = fixture.membrane
 
   assert.ok
