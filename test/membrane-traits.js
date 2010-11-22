@@ -145,4 +145,9 @@ exports['test add `MembraneTrait` to trait composition'] = function(assert) {
   , fixture.method.call({ _foo: 'test' })
   , 'invoking call on methods of membrane works'
   )
+  assert.equal
+  ( fixture.membrane
+  , membrane
+  , 'membrane proprety is lazy getter that is invoked only ones'
+  )
 }
