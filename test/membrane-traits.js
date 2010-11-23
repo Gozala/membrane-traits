@@ -42,13 +42,13 @@ exports['test create membranes as traits'] = function (assert) {
   )
   assert.equal
   ( fixture.method.call({ _foo: 'test' }, ' a,', 'b')
-  , 'test a,b'
-  , 'invoking call on methods of membrane works'
+  , 'new secret a,b'
+  , '`this` pseudo-variable can not be passed through call.'
   )
   assert.equal
   ( fixture.method.apply({ _foo: 'test' }, [' a,', 'b'])
-  , 'test a,b'
-  , 'invoking apply on methods of membrane works'
+  , 'new secret a,b'
+  , '`this` pseudo-variable can not be passed through apply.'
   )
 }
 
@@ -142,8 +142,13 @@ exports['test add `MembraneTrait` to trait composition'] = function(assert) {
   )
   assert.equal
   ( membrane.method.call({ _foo: 'test' })
-  , fixture.method.call({ _foo: 'test' })
-  , 'invoking call on methods of membrane works'
+  , fixture.method()
+  , '`this` pseudo-variable can not be passed through call.'
+  )
+  assert.equal
+  ( membrane.method.apply({ _foo: 'test' })
+  , fixture.method()
+  , '`this` pseudo-variable can not be passed through apply.'
   )
   assert.equal
   ( fixture.membrane
