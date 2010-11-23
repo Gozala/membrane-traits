@@ -1,5 +1,5 @@
 { "name": "membrane-traits"
-, "version": "0.0.1"
+, "version": "0.0.2"
 , "description": "Traits & object capability model based wrappers for secure interaction with unprivileged code."
 , "homepage": "http://github.com/Gozala/membrane-traits/"
 , "keywords": ["traits", "capability", "wrappers", "membranes"]
